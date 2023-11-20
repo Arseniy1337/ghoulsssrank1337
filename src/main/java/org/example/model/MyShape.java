@@ -9,7 +9,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RectangularShape;
 
-public class MyShape {
+public class MyShape implements Cloneable {
     private Color color;
     private RectangularShape shape;
     private FillBehavior fb;
@@ -55,4 +55,16 @@ public class MyShape {
         fb.draw(g);
 
     }
+
+    @Override
+    public MyShape clone() {
+        MyShape shape1 = new MyShape();
+        shape1.color = color;
+        shape1.shape = (RectangularShape) shape.clone();
+        // TODO: 20.11.2023 Clone FB
+        shape1.fb = fb;
+        return shape1;
+    }
 }
+
+
