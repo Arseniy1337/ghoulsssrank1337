@@ -18,22 +18,31 @@ public class Controller {
     private Model model;
     private MyFrame frame;
     private MyPanel panel;
-    private Point2D [] pd;
+    private Point2D[] pd;
     private MyShape shape;
 
     @PostConstruct
     public void init() {
         shape = new MyShape(Color.CYAN, new Rectangle2D.Double(), new NoFill());
-
         model.addObserver(panel);
         frame.setPanel(panel);
-
         pd = new Point2D[2];
     }
-    public void getPointOne(Point2D p){
+
+    public void getPointOne(Point2D p) {
         pd[0] = p;
     }
-    public void getPointTwo(Point2D p){
+
+    public void getPointTwo(Point2D p) {
+        pd[1] = p;
+        model.changeShape(pd);
+    }
+
+    public void mousePressed(Point2D p) {
+        pd[0] = p;
+    }
+
+    public void mouseDragged(Point2D p) {
         pd[1] = p;
         model.changeShape(pd);
     }
@@ -47,10 +56,12 @@ public class Controller {
     public void setModel(Model model) {
         this.model = model;
     }
+
     @Autowired
     public void setFrame(MyFrame frame) {
         this.frame = frame;
     }
+
     @Autowired
     public void setPanel(MyPanel panel) {
         this.panel = panel;

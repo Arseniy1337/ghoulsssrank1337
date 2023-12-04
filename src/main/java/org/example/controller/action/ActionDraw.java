@@ -47,5 +47,3 @@ public class ActionDraw {
         shape.setFrame(p);
     }
 }
-
-
